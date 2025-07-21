@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI分镜脚本工具</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .template-card {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .template-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .hook-option {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            background: #f1f1f1;
+            cursor: pointer;
+        }
+        .hook-option:hover {
+            background: #e9e9e9;
+        }
+        #storyboard-table {
+            margin-top: 20px;
+        }
+        .cta-btn {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">AI分镜脚本工具</h1>
+        
+        <!-- 视频类型选择 -->
+        <div class="row mb-4">
+            <div class="col-md-6 mx-auto">
+                <div class="card template-card" data-type="explore">
+                    <div class="card-body text-center">
+                        <h5>探店模板</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mx-auto">
+                <div class="card template-card" data-type="tutorial">
+                    <div class="card-body text-center">
+                        <h5>教程模板</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hook生成区域 -->
+        <div class="card mb-4" id="hook-section">
+            <div class="card-header">开场Hook</div>
+            <div class="card-body" id="hook-options">
+                <!-- 动态生成hook选项 -->
+            </div>
+        </div>
+
+        <!-- 分镜表格 -->
+        <div class="card mb-4">
+            <div class="card-header">分镜表格</div>
+            <div class="card-body">
+                <table class="table" id="storyboard-table">
+                    <thead>
+                        <tr>
+                            <th>时长(秒)</th>
+                            <th>机位</th>
+                            <th>内容</th>
+                            <th>BGM</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="shot-list">
+                        <!-- 动态生成分镜行 -->
+                    </tbody>
+                </table>
+                <button class="btn btn-primary" id="add-shot">添加分镜</button>
+                <div class="mt-2">总时长: <span id="total-duration">0</span>秒</div>
+            </div>
+        </div>
+
+        <!-- CTA按钮 -->
+        <div class="card mb-4">
+            <div class="card-header">结尾CTA</div>
+            <div class="card-body text-center">
+                <button class="btn btn-success cta-btn">获取同款滤镜</button>
+                <button class="btn btn-info cta-btn">路线导航</button>
+                <button class="btn btn-warning cta-btn">商品清单</button>
+            </div>
+        </div>
+
+        <!-- 语音朗读 -->
+        <div class="text-center mb-4">
+            <button class="btn btn-secondary" id="speak-script">朗读脚本</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/script.js"></script>
+</body>
+</html>
