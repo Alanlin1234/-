@@ -1,112 +1,154 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>GameHub - Play Online Games</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI分镜脚本工具</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="description" content="Play the most popular online web games for free! Enjoy 2048, Tetris, Slither.io, Chrome Dino, Minesweeper, and more directly in your browser. Modern, fast, and mobile-friendly.">
     <style>
-        body {
-            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background-color: #f8f9fa;
-            padding: 20px;
-        }
-        .template-card {
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .template-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .hook-option {
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 5px;
-            background: #f1f1f1;
-            cursor: pointer;
-        }
-        .hook-option:hover {
-            background: #e9e9e9;
-        }
-        #storyboard-table {
-            margin-top: 20px;
-        }
-        .cta-btn {
-            margin: 5px;
-        }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 0; }
+        .navbar { width: 100%; background: #222; color: #fff; padding: 16px 0 12px 0; text-align: center; font-size: 1.5rem; letter-spacing: 2px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .container { max-width: 1200px; margin: 40px auto 0 auto; padding: 24px; }
+        h1 { text-align: center; color: #222; margin-bottom: 32px; font-size: 2.3rem; letter-spacing: 1px; }
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 32px; }
+        .game-card { background: #fff; border-radius: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 20px 18px 18px 18px; display: flex; flex-direction: column; align-items: center; transition: box-shadow 0.2s; }
+        .game-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.13); }
+        .game-title { font-size: 1.3rem; font-weight: 600; color: #1a237e; margin-bottom: 10px; text-align: center; }
+        .game-desc { font-size: 1rem; color: #444; margin-bottom: 12px; text-align: center; }
+        .game-iframe { width: 100%; min-height: 420px; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 8px; background: #fafafa; }
+        .open-btn, .fullscreen-btn { display: inline-block; margin: 6px 4px 0 4px; padding: 6px 18px; background: #1976d2; color: #fff; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; text-decoration: none; transition: background 0.18s; }
+        .open-btn:hover, .fullscreen-btn:hover { background: #0d47a1; }
+        footer { margin-top: 48px; padding: 24px 0 12px 0; background: #222; color: #eee; text-align: center; font-size: 1rem; letter-spacing: 1px; }
+        @media (max-width: 600px) { .container { padding: 8px; } .game-iframe { min-height: 320px; } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-center my-4">AI分镜脚本工具</h1>
-        
-        <!-- 视频类型选择 -->
-        <div class="row mb-4">
-            <div class="col-md-6 mx-auto">
-                <div class="card template-card" data-type="explore">
-                    <div class="card-body text-center">
-                        <h5>探店模板</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mx-auto">
-                <div class="card template-card" data-type="tutorial">
-                    <div class="card-body text-center">
-                        <h5>教程模板</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Hook生成区域 -->
-        <div class="card mb-4" id="hook-section">
-            <div class="card-header">开场Hook</div>
-            <div class="card-body" id="hook-options">
-                <!-- 动态生成hook选项 -->
-            </div>
-        </div>
-
-        <!-- 分镜表格 -->
-        <div class="card mb-4">
-            <div class="card-header">分镜表格</div>
-            <div class="card-body">
-                <table class="table" id="storyboard-table">
-                    <thead>
-                        <tr>
-                            <th>时长(秒)</th>
-                            <th>机位</th>
-                            <th>内容</th>
-                            <th>BGM</th>
-                            <th>操作</th>
-                        </tr>
-                    </thead>
-                    <tbody id="shot-list">
-                        <!-- 动态生成分镜行 -->
-                    </tbody>
-                </table>
-                <button class="btn btn-primary" id="add-shot">添加分镜</button>
-                <div class="mt-2">总时长: <span id="total-duration">0</span>秒</div>
-            </div>
-        </div>
-
-        <!-- CTA按钮 -->
-        <div class="card mb-4">
-            <div class="card-header">结尾CTA</div>
-            <div class="card-body text-center">
-                <button class="btn btn-success cta-btn">获取同款滤镜</button>
-                <button class="btn btn-info cta-btn">路线导航</button>
-                <button class="btn btn-warning cta-btn">商品清单</button>
-            </div>
-        </div>
-
-        <!-- 语音朗读 -->
-        <div class="text-center mb-4">
-            <button class="btn btn-secondary" id="speak-script">朗读脚本</button>
-        </div>
+<div class="navbar">GameHub</div>
+<div class="container">
+    <h1>Play the Most Popular Web Games Online</h1>
+    <div class="games-grid">
+        <!-- 2048 -->
+        <section class="game-card">
+            <h2 class="game-title">2048</h2>
+            <div class="game-desc">Join the numbers and get to the 2048 tile! A simple but addictive puzzle game.</div>
+            <iframe class="game-iframe" id="iframe-2048" src="https://play2048.co/" title="2048 Game" loading="lazy" allowfullscreen></iframe>
+            <button class="fullscreen-btn" onclick="openFullscreen('iframe-2048')">Fullscreen</button>
+            <a class="open-btn" href="https://play2048.co/" target="_blank" rel="noopener">Open in New Window</a>
+        </section>
+        <!-- Tetris -->
+        <section class="game-card">
+            <h2 class="game-title">Tetris</h2>
+            <div class="game-desc">The classic block-stacking game. Arrange falling blocks to clear lines and score points.</div>
+            <iframe class="game-iframe" id="iframe-tetris" src="https://tetris.com/play-tetris" title="Tetris Game" loading="lazy" allowfullscreen></iframe>
+            <button class="fullscreen-btn" onclick="openFullscreen('iframe-tetris')">Fullscreen</button>
+            <a class="open-btn" href="https://tetris.com/play-tetris" target="_blank" rel="noopener">Open in New Window</a>
+        </section>
+        <!-- Slither.io -->
+        <section class="game-card">
+            <h2 class="game-title">Slither.io</h2>
+            <div class="game-desc">Control your snake, eat to grow, and compete with players worldwide in this multiplayer hit.</div>
+            <iframe class="game-iframe" id="iframe-slither" src="https://slither.io/" title="Slither.io Game" loading="lazy" allowfullscreen></iframe>
+            <button class="fullscreen-btn" onclick="openFullscreen('iframe-slither')">Fullscreen</button>
+            <a class="open-btn" href="https://slither.io/" target="_blank" rel="noopener">Open in New Window</a>
+        </section>
+        <!-- Chrome Dino -->
+        <section class="game-card">
+            <h2 class="game-title">Chrome Dino</h2>
+            <div class="game-desc">Jump over obstacles and run as far as you can in this endless runner game inspired by Chrome's offline dinosaur.</div>
+            <iframe class="game-iframe" id="iframe-dino" src="https://chromedino.com/" title="Chrome Dino Game" loading="lazy" allowfullscreen></iframe>
+            <button class="fullscreen-btn" onclick="openFullscreen('iframe-dino')">Fullscreen</button>
+            <a class="open-btn" href="https://chromedino.com/" target="_blank" rel="noopener">Open in New Window</a>
+        </section>
+        <!-- Minesweeper -->
+        <section class="game-card">
+            <h2 class="game-title">Minesweeper</h2>
+            <div class="game-desc">Test your logic and memory in this classic puzzle game. Avoid the mines and clear the board!</div>
+            <iframe class="game-iframe" id="iframe-minesweeper" src="https://minesweeperonline.com/" title="Minesweeper Game" loading="lazy" allowfullscreen></iframe>
+            <button class="fullscreen-btn" onclick="openFullscreen('iframe-minesweeper')">Fullscreen</button>
+            <a class="open-btn" href="https://minesweeperonline.com/" target="_blank" rel="noopener">Open in New Window</a>
+        </section>
+        <!-- Cut the Rope -->
+        <section class="game-card">
+            <h2 class="game-title">Cut the Rope</h2>
+            <div class="game-desc">Feed candy to Om Nom by cutting ropes in this fun physics-based puzzle game.</div>
+            <iframe class="game-iframe" id="iframe-cuttherope" src="https://cuttherope.ie/" title="Cut the Rope Game" loading="lazy" allowfullscreen></iframe>
+            <button class="fullscreen-btn" onclick="openFullscreen('iframe-cuttherope')">Fullscreen</button>
+            <a class="open-btn" href="https://cuttherope.ie/" target="_blank" rel="noopener">Open in New Window</a>
+        </section>
+        <!-- Pacman -->
+        <section class="game-card">
+            <h2 class="game-title">Pacman</h2>
+            <div class="game-desc">Eat all the dots and avoid the ghosts in this timeless arcade classic.</div>
+            <iframe class="game-iframe" id="iframe-pacman" src="https://www.google.com/logos/2010/pacman10-i.html" title="Pacman Game" loading="lazy" allowfullscreen></iframe>
+            <button class="fullscreen-btn" onclick="openFullscreen('iframe-pacman')">Fullscreen</button>
+            <a class="open-btn" href="https://www.google.com/logos/2010/pacman10-i.html" target="_blank" rel="noopener">Open in New Window</a>
+        </section>
+        <!-- Flappy Bird -->
+        <section class="game-card">
+            <h2 class="game-title">Flappy Bird</h2>
+            <div class="game-desc">Tap to fly and avoid the pipes in this simple but challenging game.</div>
+            <iframe class="game-iframe" id="iframe-flappybird" src="https://flappybird.io/" title="Flappy Bird Game" loading="lazy" allowfullscreen></iframe>
+            <button class="fullscreen-btn" onclick="openFullscreen('iframe-flappybird')">Fullscreen</button>
+            <a class="open-btn" href="https://flappybird.io/" target="_blank" rel="noopener">Open in New Window</a>
+        </section>
+        <!-- 2048 Cupcakes -->
+        <section class="game-card">
+            <h2 class="game-title">2048 Cupcakes</h2>
+            <div class="game-desc">A sweet twist on the classic 2048 game. Merge cupcakes to reach the ultimate treat!</div>
+            <iframe class="game-iframe" id="iframe-2048cupcakes" src="https://cupcakes2048.com/" title="2048 Cupcakes Game" loading="lazy" allowfullscreen></iframe>
+            <button class="fullscreen-btn" onclick="openFullscreen('iframe-2048cupcakes')">Fullscreen</button>
+            <a class="open-btn" href="https://cupcakes2048.com/" target="_blank" rel="noopener">Open in New Window</a>
+        </section>
+        <!-- Super Mario Bros -->
+        <section class="game-card">
+            <h2 class="game-title">Super Mario Bros</h2>
+            <div class="game-desc">Play the legendary Super Mario Bros platformer right in your browser!</div>
+            <iframe class="game-iframe" id="iframe-mario" src="https://supermario-game.com/" title="Super Mario Bros Game" loading="lazy" allowfullscreen></iframe>
+            <button class="fullscreen-btn" onclick="openFullscreen('iframe-mario')">Fullscreen</button>
+            <a class="open-btn" href="https://supermario-game.com/" target="_blank" rel="noopener">Open in New Window</a>
+        </section>
+        <!-- HexGL -->
+        <section class="game-card">
+            <h2 class="game-title">HexGL</h2>
+            <div class="game-desc">A fast-paced futuristic racing game with stunning 3D graphics.</div>
+            <iframe class="game-iframe" id="iframe-hexgl" src="https://hexgl.bkcore.com/play/" title="HexGL Game" loading="lazy" allowfullscreen></iframe>
+            <button class="fullscreen-btn" onclick="openFullscreen('iframe-hexgl')">Fullscreen</button>
+            <a class="open-btn" href="https://hexgl.bkcore.com/play/" target="_blank" rel="noopener">Open in New Window</a>
+        </section>
+        <!-- Crossy Road -->
+        <section class="game-card">
+            <h2 class="game-title">Crossy Road</h2>
+            <div class="game-desc">Help your character cross roads, rivers, and more in this endless arcade hopper.</div>
+            <iframe class="game-iframe" id="iframe-crossyroad" src="https://crossyroad.com/play/" title="Crossy Road Game" loading="lazy" allowfullscreen></iframe>
+            <button class="fullscreen-btn" onclick="openFullscreen('iframe-crossyroad')">Fullscreen</button>
+            <a class="open-btn" href="https://crossyroad.com/play/" target="_blank" rel="noopener">Open in New Window</a>
+        </section>
+        <!-- Line Rider -->
+        <section class="game-card">
+            <h2 class="game-title">Line Rider</h2>
+            <div class="game-desc">Draw lines and watch your sledder ride them in this creative physics sandbox.</div>
+            <iframe class="game-iframe" id="iframe-linerider" src="https://www.linerider.com/" title="Line Rider Game" loading="lazy" allowfullscreen></iframe>
+            <button class="fullscreen-btn" onclick="openFullscreen('iframe-linerider')">Fullscreen</button>
+            <a class="open-btn" href="https://www.linerider.com/" target="_blank" rel="noopener">Open in New Window</a>
+        </section>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/script.js"></script>
+</div>
+<footer>
+    &copy; 2024 GameHub. All rights reserved.
+</footer>
+<script>
+function openFullscreen(id) {
+  var iframe = document.getElementById(id);
+  if (iframe.requestFullscreen) {
+    iframe.requestFullscreen();
+  } else if (iframe.mozRequestFullScreen) {
+    iframe.mozRequestFullScreen();
+  } else if (iframe.webkitRequestFullscreen) {
+    iframe.webkitRequestFullscreen();
+  } else if (iframe.msRequestFullscreen) {
+    iframe.msRequestFullscreen();
+  }
+}
+</script>
 </body>
-</html>
+</html> 
