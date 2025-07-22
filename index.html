@@ -1669,3 +1669,55 @@
                 
                 // In a real implementation, this would recalculate the number of pages
                 // and
+            });
+        });
+
+        // 绑定所有“Play Now”按钮点击事件
+        document.querySelectorAll('.play-game-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // 获取当前卡片的 data-game 属性
+                const gameCard = this.closest('.game-card');
+                const gameKey = gameCard.getAttribute('data-game');
+                if (!gameKey || !gamesData[gameKey]) return;
+
+                const game = gamesData[gameKey];
+
+                // 切换iframe
+                const iframe = document.getElementById('game-frame');
+                iframe.src = game.url;
+
+                // 更新游戏标题、描述等
+                document.getElementById('current-game-title').textContent = game.title;
+                document.getElementById('current-game-desc').textContent = game.desc;
+                document.getElementById('current-game-about').textContent = game.about;
+                document.getElementById('current-game-details').textContent = game.details;
+
+                // 更新玩法说明
+                const instructionsUl = document.getElementById('current-game-instructions');
+                instructionsUl.innerHTML = '';
+                game.instructions.forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = item;
+                    instructionsUl.appendChild(li);
+                });
+
+                // 更新游戏特性
+                const featuresUl = document.getElementById('current-game-features');
+                featuresUl.innerHTML = '';
+                game.features.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    featuresUl.appendChild(li);
+                });
+
+                // 页面滚动到顶部 featured 区域
+                const featuredSection = document.getElementById('featured');
+                window.scrollTo({
+                    top: featuredSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
