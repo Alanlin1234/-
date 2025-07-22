@@ -2,273 +2,1336 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>GameHub - Play Free Online Games</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Play the most popular free online web games! Enjoy 2048, Tetris, Slither.io, Chrome Dino, Minesweeper, Mario, Pacman, and more directly in your browser. No download, just click and play!">
-    <meta name="keywords" content="online games, web games, play games, free games, 2048, Tetris, Slither.io, Chrome Dino, Minesweeper, Pacman, Mario, Cut the Rope, HexGL, Crossy Road, Line Rider, Flappy Bird, Sudoku, Chess, Checkers, Solitaire, Snake, Pong, Mahjong, Bubble Shooter, Puzzle, Arcade, HTML5 games, browser games">
-    <link rel="canonical" href="https://yourdomain.com/">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "GameHub",
-      "url": "https://yourdomain.com/",
-      "description": "Play the most popular free online web games! Enjoy 2048, Tetris, Slither.io, Chrome Dino, Minesweeper, Mario, Pacman, and more directly in your browser."
-    }
-    </script>
+    <title>GameHub - Play All Games Directly</title>
+    <meta name="description" content="Play Poor Bunny and other popular web games directly in your browser.">
+    <meta name="keywords" content="poor bunny, online games, web games, play games">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6fb; margin: 0; padding: 0; }
-        .navbar { width: 100%; background: linear-gradient(90deg,#1976d2 0%,#42a5f5 100%); color: #fff; padding: 18px 0 14px 0; text-align: center; font-size: 2rem; letter-spacing: 2px; font-weight: 700; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-        .container { max-width: 1300px; margin: 40px auto 0 auto; padding: 24px; }
-        h1 { text-align: center; color: #1a237e; margin-bottom: 36px; font-size: 2.5rem; letter-spacing: 1px; }
-        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 36px; }
-        .game-card { background: #fff; border-radius: 18px; box-shadow: 0 4px 24px rgba(33,150,243,0.08); padding: 22px 18px 18px 18px; display: flex; flex-direction: column; align-items: center; transition: box-shadow 0.2s, transform 0.2s; border: 1.5px solid #e3eafc; }
-        .game-card:hover { box-shadow: 0 8px 32px rgba(33,150,243,0.18); transform: translateY(-4px) scale(1.02); }
-        .game-title { font-size: 1.25rem; font-weight: 700; color: #1976d2; margin-bottom: 8px; text-align: center; letter-spacing: 0.5px; }
-        .game-desc { font-size: 1rem; color: #444; margin-bottom: 12px; text-align: center; min-height: 40px; }
-        .game-thumb { width: 90px; height: 90px; object-fit: cover; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 2px 8px #e3eafc; background: #f4f6fb; }
-        .game-iframe { width: 100%; min-height: 380px; border: 1px solid #e0e0e0; border-radius: 10px; margin-bottom: 8px; background: #fafafa; }
-        .open-btn, .fullscreen-btn { display: inline-block; margin: 6px 4px 0 4px; padding: 7px 20px; background: #1976d2; color: #fff; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; text-decoration: none; transition: background 0.18s, box-shadow 0.18s; box-shadow: 0 2px 8px #e3eafc; }
-        .open-btn:hover, .fullscreen-btn:hover { background: #0d47a1; box-shadow: 0 4px 16px #bbdefb; }
-        .tag-list { margin: 8px 0 0 0; font-size: 0.95rem; color: #888; }
-        footer { margin-top: 48px; padding: 24px 0 12px 0; background: #222; color: #eee; text-align: center; font-size: 1rem; letter-spacing: 1px; }
-        @media (max-width: 900px) { .container { padding: 8px; } .games-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 600px) { h1 { font-size: 1.3rem; } .game-iframe { min-height: 220px; } .game-thumb { width: 60px; height: 60px; } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #8a2be2;
+            --primary-light: #9d4fe9;
+            --primary-dark: #6a11cb;
+            --secondary: #ff6b6b;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gray: #e0e0e0;
+            --text: #333;
+            --text-light: #666;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            color: var(--primary-light);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        nav a:hover {
+            color: var(--primary-light);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary-light);
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.8)), 
+                        url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3') no-repeat center/cover;
+            color: white;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 2.2rem;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .game-container {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            margin: 3rem auto;
+        }
+        
+        .game-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .game-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .game-frame-container {
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .game-frame-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 0;
+            padding-bottom: 75%; /* 4:3 aspect ratio */
+            background: #000;
+        }
+        
+        .game-frame-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .game-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--light);
+            border: 1px solid var(--gray);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .action-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .game-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .game-thumb {
+            height: 160px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .game-thumb i {
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .game-content {
+            padding: 1.5rem;
+        }
+        
+        .game-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .game-desc {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            min-height: 60px;
+        }
+        
+        .game-info {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            margin: 3rem auto;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .info-card {
+            background: #f9f7ff;
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+        
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.5rem;
+        }
+        
+        .tab-container {
+            margin: 2rem 0;
+        }
+        
+        .tabs {
+            display: flex;
+            background: white;
+            border-radius: 50px;
+            padding: 0.5rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 0.8rem;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: var(--transition);
+            font-weight: 500;
+            min-width: 120px;
+        }
+        
+        .tab.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            text-align: center;
+        }
+        
+        .copyright {
+            padding-top: 1rem;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .warning-banner {
+            background: #fff3cd;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #ffc107;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .warning-banner i {
+            font-size: 1.5rem;
+        }
+        
+        .external-game-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            border: 2px dashed #e0e0e0;
+        }
+        
+        .external-game-container h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .external-game-container p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+        
+        .game-play-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .game-play-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+        }
+        
+        .game-icon {
+            font-size: 1.2rem;
+        }
+        
+        .game-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--secondary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            gap: 0.5rem;
+        }
+        
+        .page-btn {
+            background: var(--light);
+            border: 1px solid var(--gray);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .page-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .page-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .page-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0 1rem;
+            font-weight: 500;
+        }
+        
+        .games-page {
+            display: none;
+        }
+        
+        .games-page.active {
+            display: block;
+        }
+        
+        .games-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0 1rem;
+        }
+        
+        .games-section-header h3 {
+            color: var(--dark);
+            font-size: 1.5rem;
+        }
+        
+        .games-per-page {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .games-per-page select {
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--gray);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .game-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .game-frame-wrapper {
+                padding-bottom: 100%; /* Square aspect ratio for mobile */
+            }
+            
+            .games-section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .game-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+            
+            .tab {
+                min-width: 110px;
+            }
+            
+            .pagination {
+                flex-wrap: wrap;
+            }
+        }
     </style>
 </head>
 <body>
-<nav class="navbar">GameHub</nav>
-<main class="container">
-    <h1>Play the Most Popular Free Web Games Online</h1>
-    <section class="games-grid">
-        <!-- 2048 -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://play2048.co/favicon.ico" alt="2048 icon">
-            <h2 class="game-title">2048</h2>
-            <div class="game-desc">Join the numbers and get to the 2048 tile! A simple but addictive puzzle game.</div>
-            <iframe class="game-iframe" id="iframe-2048" src="https://play2048.co/" title="2048 Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-2048')">Fullscreen</button>
-            <a class="open-btn" href="https://play2048.co/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Puzzle, Numbers, Addictive</div>
-        </article>
-        <!-- Tetris -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://tetris.com/favicon.ico" alt="Tetris icon">
-            <h2 class="game-title">Tetris</h2>
-            <div class="game-desc">The classic block-stacking game. Arrange falling blocks to clear lines and score points.</div>
-            <iframe class="game-iframe" id="iframe-tetris" src="https://tetris.com/play-tetris" title="Tetris Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-tetris')">Fullscreen</button>
-            <a class="open-btn" href="https://tetris.com/play-tetris" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Classic, Puzzle, Arcade</div>
-        </article>
-        <!-- Slither.io -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://slither.io/favicon.ico" alt="Slither.io icon">
-            <h2 class="game-title">Slither.io</h2>
-            <div class="game-desc">Control your snake, eat to grow, and compete with players worldwide in this multiplayer hit.</div>
-            <iframe class="game-iframe" id="iframe-slither" src="https://slither.io/" title="Slither.io Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-slither')">Fullscreen</button>
-            <a class="open-btn" href="https://slither.io/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Snake, Multiplayer, Arcade</div>
-        </article>
-        <!-- Chrome Dino -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://chromedino.com/favicon.ico" alt="Chrome Dino icon">
-            <h2 class="game-title">Chrome Dino</h2>
-            <div class="game-desc">Jump over obstacles and run as far as you can in this endless runner game inspired by Chrome's offline dinosaur.</div>
-            <iframe class="game-iframe" id="iframe-dino" src="https://chromedino.com/" title="Chrome Dino Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-dino')">Fullscreen</button>
-            <a class="open-btn" href="https://chromedino.com/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Runner, Dinosaur, Endless</div>
-        </article>
-        <!-- Minesweeper -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://minesweeperonline.com/favicon.ico" alt="Minesweeper icon">
-            <h2 class="game-title">Minesweeper</h2>
-            <div class="game-desc">Test your logic and memory in this classic puzzle game. Avoid the mines and clear the board!</div>
-            <iframe class="game-iframe" id="iframe-minesweeper" src="https://minesweeperonline.com/" title="Minesweeper Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-minesweeper')">Fullscreen</button>
-            <a class="open-btn" href="https://minesweeperonline.com/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Puzzle, Logic, Classic</div>
-        </article>
-        <!-- Cut the Rope -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://cuttherope.ie/favicon.ico" alt="Cut the Rope icon">
-            <h2 class="game-title">Cut the Rope</h2>
-            <div class="game-desc">Feed candy to Om Nom by cutting ropes in this fun physics-based puzzle game.</div>
-            <iframe class="game-iframe" id="iframe-cuttherope" src="https://cuttherope.ie/" title="Cut the Rope Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-cuttherope')">Fullscreen</button>
-            <a class="open-btn" href="https://cuttherope.ie/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Physics, Puzzle, Cute</div>
-        </article>
-        <!-- Pacman -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://www.google.com/logos/2010/pacman10-i.html" alt="Pacman icon">
-            <h2 class="game-title">Pacman</h2>
-            <div class="game-desc">Eat all the dots and avoid the ghosts in this timeless arcade classic.</div>
-            <iframe class="game-iframe" id="iframe-pacman" src="https://www.google.com/logos/2010/pacman10-i.html" title="Pacman Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-pacman')">Fullscreen</button>
-            <a class="open-btn" href="https://www.google.com/logos/2010/pacman10-i.html" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Arcade, Classic, Maze</div>
-        </article>
-        <!-- Flappy Bird -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://flappybird.io/favicon.ico" alt="Flappy Bird icon">
-            <h2 class="game-title">Flappy Bird</h2>
-            <div class="game-desc">Tap to fly and avoid the pipes in this simple but challenging game.</div>
-            <iframe class="game-iframe" id="iframe-flappybird" src="https://flappybird.io/" title="Flappy Bird Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-flappybird')">Fullscreen</button>
-            <a class="open-btn" href="https://flappybird.io/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Arcade, Skill, Bird</div>
-        </article>
-        <!-- 2048 Cupcakes -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://cupcakes2048.com/favicon.ico" alt="2048 Cupcakes icon">
-            <h2 class="game-title">2048 Cupcakes</h2>
-            <div class="game-desc">A sweet twist on the classic 2048 game. Merge cupcakes to reach the ultimate treat!</div>
-            <iframe class="game-iframe" id="iframe-2048cupcakes" src="https://cupcakes2048.com/" title="2048 Cupcakes Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-2048cupcakes')">Fullscreen</button>
-            <a class="open-btn" href="https://cupcakes2048.com/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Puzzle, Cute, Numbers</div>
-        </article>
-        <!-- Super Mario Bros -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://supermario-game.com/favicon.ico" alt="Super Mario Bros icon">
-            <h2 class="game-title">Super Mario Bros</h2>
-            <div class="game-desc">Play the legendary Super Mario Bros platformer right in your browser!</div>
-            <iframe class="game-iframe" id="iframe-mario" src="https://supermario-game.com/" title="Super Mario Bros Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-mario')">Fullscreen</button>
-            <a class="open-btn" href="https://supermario-game.com/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Platformer, Classic, Adventure</div>
-        </article>
-        <!-- HexGL -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://hexgl.bkcore.com/favicon.ico" alt="HexGL icon">
-            <h2 class="game-title">HexGL</h2>
-            <div class="game-desc">A fast-paced futuristic racing game with stunning 3D graphics.</div>
-            <iframe class="game-iframe" id="iframe-hexgl" src="https://hexgl.bkcore.com/play/" title="HexGL Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-hexgl')">Fullscreen</button>
-            <a class="open-btn" href="https://hexgl.bkcore.com/play/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Racing, 3D, Futuristic</div>
-        </article>
-        <!-- Crossy Road -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://crossyroad.com/favicon.ico" alt="Crossy Road icon">
-            <h2 class="game-title">Crossy Road</h2>
-            <div class="game-desc">Help your character cross roads, rivers, and more in this endless arcade hopper.</div>
-            <iframe class="game-iframe" id="iframe-crossyroad" src="https://crossyroad.com/play/" title="Crossy Road Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-crossyroad')">Fullscreen</button>
-            <a class="open-btn" href="https://crossyroad.com/play/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Arcade, Endless, Skill</div>
-        </article>
-        <!-- Line Rider -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://www.linerider.com/favicon.ico" alt="Line Rider icon">
-            <h2 class="game-title">Line Rider</h2>
-            <div class="game-desc">Draw lines and watch your sledder ride them in this creative physics sandbox.</div>
-            <iframe class="game-iframe" id="iframe-linerider" src="https://www.linerider.com/" title="Line Rider Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-linerider')">Fullscreen</button>
-            <a class="open-btn" href="https://www.linerider.com/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Sandbox, Physics, Creative</div>
-        </article>
-        <!-- Sudoku -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://sudoku.com/favicon.ico" alt="Sudoku icon">
-            <h2 class="game-title">Sudoku</h2>
-            <div class="game-desc">Challenge your brain with this classic number puzzle game. Multiple difficulty levels!</div>
-            <iframe class="game-iframe" id="iframe-sudoku" src="https://sudoku.com/" title="Sudoku Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-sudoku')">Fullscreen</button>
-            <a class="open-btn" href="https://sudoku.com/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Puzzle, Numbers, Brain</div>
-        </article>
-        <!-- Chess -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://www.chess.com/bundles/web/images/favicon.ico" alt="Chess icon">
-            <h2 class="game-title">Chess</h2>
-            <div class="game-desc">Play chess online against the computer or real players. Improve your skills!</div>
-            <iframe class="game-iframe" id="iframe-chess" src="https://www.chess.com/play/computer" title="Chess Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-chess')">Fullscreen</button>
-            <a class="open-btn" href="https://www.chess.com/play/computer" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Board, Strategy, Classic</div>
-        </article>
-        <!-- Checkers -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://www.gamesforthebrain.com/favicon.ico" alt="Checkers icon">
-            <h2 class="game-title">Checkers</h2>
-            <div class="game-desc">Enjoy the classic board game of checkers online. Simple, fun, and challenging!</div>
-            <iframe class="game-iframe" id="iframe-checkers" src="https://www.gamesforthebrain.com/game/checkers/" title="Checkers Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-checkers')">Fullscreen</button>
-            <a class="open-btn" href="https://www.gamesforthebrain.com/game/checkers/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Board, Classic, Strategy</div>
-        </article>
-        <!-- Solitaire -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://www.solitr.com/favicon.ico" alt="Solitaire icon">
-            <h2 class="game-title">Solitaire</h2>
-            <div class="game-desc">Play the classic card game Solitaire for free in your browser!</div>
-            <iframe class="game-iframe" id="iframe-solitaire" src="https://www.solitr.com/" title="Solitaire Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-solitaire')">Fullscreen</button>
-            <a class="open-btn" href="https://www.solitr.com/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Card, Classic, Puzzle</div>
-        </article>
-        <!-- Snake -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://playsnake.org/favicon.ico" alt="Snake icon">
-            <h2 class="game-title">Snake</h2>
-            <div class="game-desc">Guide your snake to eat food and grow longer. Don't hit the walls or yourself!</div>
-            <iframe class="game-iframe" id="iframe-snake" src="https://playsnake.org/" title="Snake Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-snake')">Fullscreen</button>
-            <a class="open-btn" href="https://playsnake.org/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Classic, Arcade, Skill</div>
-        </article>
-        <!-- Pong -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://ponggame.org/favicon.ico" alt="Pong icon">
-            <h2 class="game-title">Pong</h2>
-            <div class="game-desc">The original arcade classic! Play Pong against the computer or a friend.</div>
-            <iframe class="game-iframe" id="iframe-pong" src="https://ponggame.org/" title="Pong Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-pong')">Fullscreen</button>
-            <a class="open-btn" href="https://ponggame.org/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Arcade, Classic, Sports</div>
-        </article>
-        <!-- Mahjong -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://www.mahjong.com/favicon.ico" alt="Mahjong icon">
-            <h2 class="game-title">Mahjong</h2>
-            <div class="game-desc">Match tiles and clear the board in this relaxing and strategic game of Mahjong.</div>
-            <iframe class="game-iframe" id="iframe-mahjong" src="https://www.mahjong.com/" title="Mahjong Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-mahjong')">Fullscreen</button>
-            <a class="open-btn" href="https://www.mahjong.com/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Puzzle, Board, Classic</div>
-        </article>
-        <!-- Bubble Shooter -->
-        <article class="game-card">
-            <img class="game-thumb" src="https://www.bubbleshooter.net/favicon.ico" alt="Bubble Shooter icon">
-            <h2 class="game-title">Bubble Shooter</h2>
-            <div class="game-desc">Shoot and match bubbles to clear the board. A fun and addictive arcade game!</div>
-            <iframe class="game-iframe" id="iframe-bubbleshooter" src="https://www.bubbleshooter.net/" title="Bubble Shooter Game" loading="lazy" allowfullscreen></iframe>
-            <button class="fullscreen-btn" onclick="openFullscreen('iframe-bubbleshooter')">Fullscreen</button>
-            <a class="open-btn" href="https://www.bubbleshooter.net/" target="_blank" rel="noopener">Open in New Window</a>
-            <div class="tag-list">Tags: Arcade, Puzzle, Shooter</div>
-        </article>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-gamepad"></i>
+                    <span>GameHub</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#featured"><i class="fas fa-star"></i> Featured</a></li>
+                        <li><a href="#games"><i class="fas fa-dice"></i> Games</a></li>
+                        <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Play All Games Directly in Your Browser</h1>
+            <p>Enjoy Poor Bunny and other popular web games without leaving this page</p>
+            <a href="#featured" class="btn"><i class="fas fa-play-circle"></i> Play Now</a>
+        </div>
     </section>
-</main>
-<footer>
-    &copy; 2024 GameHub. All rights reserved. | <a href="mailto:admin@yourdomain.com" style="color:#90caf9;">Contact</a>
-</footer>
-<script>
-function openFullscreen(id) {
-  var iframe = document.getElementById(id);
-  if (iframe.requestFullscreen) {
-    iframe.requestFullscreen();
-  } else if (iframe.mozRequestFullScreen) {
-    iframe.mozRequestFullScreen();
-  } else if (iframe.webkitRequestFullscreen) {
-    iframe.webkitRequestFullscreen();
-  } else if (iframe.msRequestFullscreen) {
-    iframe.msRequestFullscreen();
-  }
-}
-</script>
+
+    <!-- Featured Game Section -->
+    <section class="container" id="featured">
+        <h2 class="section-title">Featured Game</h2>
+        
+        <div class="game-container">
+            <div class="game-header">
+                <h2>Poor Bunny</h2>
+                <p>Help the adorable bunny escape danger in this fast-paced running adventure!</p>
+            </div>
+            
+            <div class="game-frame-container">
+                <div class="warning-banner">
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        <strong>Note:</strong> Some games require direct site access. 
+                        For those, use the "Play on External Site" button.
+                    </div>
+                </div>
+                
+                <div class="game-frame-wrapper">
+                    <iframe id="game-frame" src="https://cpsgames.org/splash/poor-bunny" title="Game Frame" allowfullscreen></iframe>
+                </div>
+                
+                <div class="game-actions">
+                    <button class="action-btn" id="fullscreen-btn">
+                        <i class="fas fa-expand"></i> Fullscreen
+                    </button>
+                    <button class="action-btn" id="restart-btn">
+                        <i class="fas fa-redo"></i> Restart
+                    </button>
+                    <button class="action-btn" id="sound-btn">
+                        <i class="fas fa-volume-up"></i> Sound
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-info">
+            <h3>About Poor Bunny</h3>
+            <p style="margin: 1rem 0;">Poor Bunny is a thrilling endless runner game where you take on the role of a cute bunny trying to escape from various dangers. Jump over obstacles, avoid enemies, and collect coins to unlock new characters and power-ups!</p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>How to Play</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li><strong>Tap or click</strong> to make the bunny jump</li>
+                        <li>Jump over obstacles and gaps</li>
+                        <li>Collect coins for power-ups</li>
+                        <li>Avoid enemies and traps</li>
+                        <li>Complete daily challenges</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Game Features</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Simple one-touch controls</li>
+                        <li>Multiple unlockable characters</li>
+                        <li>Power-ups and special abilities</li>
+                        <li>Global leaderboards</li>
+                        <li>Daily challenges and rewards</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Games Section -->
+    <section class="container" id="games">
+        <h2 class="section-title">All Games</h2>
+        
+        <div class="tab-container">
+            <div class="tabs">
+                <div class="tab active" data-tab="popular">Popular Games</div>
+                <div class="tab" data-tab="new">New Releases</div>
+                <div class="tab" data-tab="external">External Games</div>
+            </div>
+            
+            <!-- Popular Games Tab -->
+            <div class="tab-content active" id="popular-content">
+                <div class="games-section-header">
+                    <h3>Most Popular Games</h3>
+                    <div class="games-per-page">
+                        <span>Games per page:</span>
+                        <select id="popular-per-page">
+                            <option value="4">4</option>
+                            <option value="8">8</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="games-page active" id="popular-page-1">
+                    <div class="games-grid">
+                        <div class="game-card">
+                            <div class="game-thumb">
+                                <i class="fas fa-bunny"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Poor Bunny</h3>
+                                <p class="game-desc">Help the bunny escape danger in this endless runner game.</p>
+                                <button class="btn" style="width:100%;margin-top:10px;">
+                                    <i class="fas fa-play"></i> Play Now
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-thumb">
+                                <i class="fas fa-snake"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Slither.io</h3>
+                                <p class="game-desc">Grow the longest snake in this multiplayer competition.</p>
+                                <button class="btn" style="width:100%;margin-top:10px;">
+                                    <i class="fas fa-play"></i> Play Now
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-thumb">
+                                <i class="fas fa-dinosaur"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Chrome Dino</h3>
+                                <p class="game-desc">Help the dinosaur jump over cacti in this endless runner.</p>
+                                <button class="btn" style="width:100%;margin-top:10px;">
+                                    <i class="fas fa-play"></i> Play Now
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-thumb">
+                                <i class="fas fa-shapes"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Tetris</h3>
+                                <p class="game-desc">The classic puzzle game that never gets old.</p>
+                                <button class="btn" style="width:100%;margin-top:10px;">
+                                    <i class="fas fa-play"></i> Play Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="games-page" id="popular-page-2">
+                    <div class="games-grid">
+                        <div class="game-card">
+                            <div class="game-thumb">
+                                <i class="fas fa-chess"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Chess Master</h3>
+                                <p class="game-desc">Challenge the computer in this classic strategy game.</p>
+                                <button class="btn" style="width:100%;margin-top:10px;">
+                                    <i class="fas fa-play"></i> Play Now
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-thumb">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Race Challenge</h3>
+                                <p class="game-desc">High-speed racing game with realistic physics.</p>
+                                <button class="btn" style="width:100%;margin-top:10px;">
+                                    <i class="fas fa-play"></i> Play Now
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-thumb">
+                                <i class="fas fa-puzzle-piece"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Jigsaw Puzzle</h3>
+                                <p class="game-desc">Relaxing puzzle game with beautiful images.</p>
+                                <button class="btn" style="width:100%;margin-top:10px;">
+                                    <i class="fas fa-play"></i> Play Now
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-thumb">
+                                <i class="fas fa-futbol"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Soccer Stars</h3>
+                                <p class="game-desc">Score goals and win matches in this football game.</p>
+                                <button class="btn" style="width:100%;margin-top:10px;">
+                                    <i class="fas fa-play"></i> Play Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pagination">
+                    <button class="page-btn prev-btn" data-page="popular">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="page-indicator">
+                        <span id="popular-current">1</span>
+                        <span>of</span>
+                        <span id="popular-total">2</span>
+                    </div>
+                    <button class="page-btn next-btn" data-page="popular">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- New Releases Tab -->
+            <div class="tab-content" id="new-content">
+                <div class="games-section-header">
+                    <h3>New Game Releases</h3>
+                    <div class="games-per-page">
+                        <span>Games per page:</span>
+                        <select id="new-per-page">
+                            <option value="4">4</option>
+                            <option value="8">8</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="games-page active" id="new-page-1">
+                    <div class="games-grid">
+                        <div class="game-card">
+                            <div class="game-tag">New</div>
+                            <div class="game-thumb">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Robot Revolution</h3>
+                                <p class="game-desc">Build and battle robots in this futuristic strategy game.</p>
+                                <button class="btn" style="width:100%;margin-top:10px;">
+                                    <i class="fas fa-play"></i> Play Now
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-tag">New</div>
+                            <div class="game-thumb">
+                                <i class="fas fa-dragon"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Dragon Adventure</h3>
+                                <p class="game-desc">Raise your dragon and explore magical lands.</p>
+                                <button class="btn" style="width:100%;margin-top:10px;">
+                                    <i class="fas fa-play"></i> Play Now
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-tag">New</div>
+                            <div class="game-thumb">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Beat Master</h3>
+                                <p class="game-desc">Rhythm game with the latest chart-topping hits.</p>
+                                <button class="btn" style="width:100%;margin-top:10px;">
+                                    <i class="fas fa-play"></i> Play Now
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-tag">New</div>
+                            <div class="game-thumb">
+                                <i class="fas fa-ghost"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Ghost Hunters</h3>
+                                <p class="game-desc">Solve mysteries in haunted locations.</p>
+                                <button class="btn" style="width:100%;margin-top:10px;">
+                                    <i class="fas fa-play"></i> Play Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="games-page" id="new-page-2">
+                    <div class="games-grid">
+                        <div class="game-card">
+                            <div class="game-tag">New</div>
+                            <div class="game-thumb">
+                                <i class="fas fa-fish"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Ocean Explorer</h3>
+                                <p class="game-desc">Discover underwater worlds and marine life.</p>
+                                <button class="btn" style="width:100%;margin-top:10px;">
+                                    <i class="fas fa-play"></i> Play Now
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-tag">New</div>
+                            <div class="game-thumb">
+                                <i class="fas fa-meteor"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Space Race</h3>
+                                <p class="game-desc">Build your space empire and explore the galaxy.</p>
+                                <button class="btn" style="width:100%;margin-top:10px;">
+                                    <i class="fas fa-play"></i> Play Now
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-tag">New</div>
+                            <div class="game-thumb">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Royal Challenge</h3>
+                                <p class="game-desc">Strategy game set in medieval times.</p>
+                                <button class="btn" style="width:100%;margin-top:10px;">
+                                    <i class="fas fa-play"></i> Play Now
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-tag">New</div>
+                            <div class="game-thumb">
+                                <i class="fas fa-running"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Parkour Masters</h3>
+                                <p class="game-desc">Navigate urban environments with parkour moves.</p>
+                                <button class="btn" style="width:100%;margin-top:10px;">
+                                    <i class="fas fa-play"></i> Play Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pagination">
+                    <button class="page-btn prev-btn" data-page="new">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="page-indicator">
+                        <span id="new-current">1</span>
+                        <span>of</span>
+                        <span id="new-total">2</span>
+                    </div>
+                    <button class="page-btn next-btn" data-page="new">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- External Games Tab -->
+            <div class="tab-content" id="external-content">
+                <div class="warning-banner">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div>
+                        <strong>Important:</strong> These games cannot be embedded due to technical restrictions. 
+                        Click the buttons below to play on the original game sites.
+                    </div>
+                </div>
+                
+                <div class="games-section-header">
+                    <h3>External Games</h3>
+                    <div class="games-per-page">
+                        <span>Games per page:</span>
+                        <select id="external-per-page">
+                            <option value="4">4</option>
+                            <option value="8">8</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="games-page active" id="external-page-1">
+                    <div class="games-grid">
+                        <div class="game-card">
+                            <div class="game-tag">External</div>
+                            <div class="game-thumb">
+                                <i class="fas fa-flag"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Minesweeper</h3>
+                                <p class="game-desc">Test your logic and memory in this classic puzzle game. Avoid the mines!</p>
+                                <a href="https://minesweeperonline.com/" class="game-play-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt game-icon"></i> Play Now
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-tag">External</div>
+                            <div class="game-thumb">
+                                <i class="fas fa-candy-cane"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Cut the Rope</h3>
+                                <p class="game-desc">Feed candy to Om Nom by cutting ropes in this fun physics-based puzzle game.</p>
+                                <a href="https://cuttherope.ie/" class="game-play-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt game-icon"></i> Play Now
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-tag">External</div>
+                            <div class="game-thumb">
+                                <i class="fas fa-dove"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Flappy Bird</h3>
+                                <p class="game-desc">Tap to fly and avoid the pipes in this simple but challenging game.</p>
+                                <a href="https://flappybird.io/" class="game-play-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt game-icon"></i> Play Now
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-tag">External</div>
+                            <div class="game-thumb">
+                                <i class="fas fa-hat-cowboy"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Super Mario</h3>
+                                <p class="game-desc">Play the legendary Super Mario Bros platformer right in your browser!</p>
+                                <a href="https://supermario-game.com/" class="game-play-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt game-icon"></i> Play Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="games-page" id="external-page-2">
+                    <div class="games-grid">
+                        <div class="game-card">
+                            <div class="game-tag">External</div>
+                            <div class="game-thumb">
+                                <i class="fas fa-pacman"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Pac-Man</h3>
+                                <p class="game-desc">The classic arcade game where you eat dots and avoid ghosts.</p>
+                                <a href="https://www.pacman.com/" class="game-play-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt game-icon"></i> Play Now
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-tag">External</div>
+                            <div class="game-thumb">
+                                <i class="fas fa-chess-board"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Chess.com</h3>
+                                <p class="game-desc">Play chess against players from around the world.</p>
+                                <a href="https://www.chess.com/" class="game-play-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt game-icon"></i> Play Now
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-tag">External</div>
+                            <div class="game-thumb">
+                                <i class="fas fa-dice"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Yahtzee</h3>
+                                <p class="game-desc">Classic dice game of chance and strategy.</p>
+                                <a href="https://www.yahtzee.com/" class="game-play-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt game-icon"></i> Play Now
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card">
+                            <div class="game-tag">External</div>
+                            <div class="game-thumb">
+                                <i class="fas fa-puzzle-piece"></i>
+                            </div>
+                            <div class="game-content">
+                                <h3 class="game-title">Jigsaw Puzzles</h3>
+                                <p class="game-desc">Thousands of free online jigsaw puzzles.</p>
+                                <a href="https://www.jigsawplanet.com/" class="game-play-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt game-icon"></i> Play Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pagination">
+                    <button class="page-btn prev-btn" data-page="external">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="page-indicator">
+                        <span id="external-current">1</span>
+                        <span>of</span>
+                        <span id="external-total">2</span>
+                    </div>
+                    <button class="page-btn next-btn" data-page="external">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="container" id="about">
+        <h2 class="section-title">About GameHub</h2>
+        
+        <div class="game-info">
+            <p>GameHub is your one-stop destination for playing the best web games directly in your browser. We've curated a collection of the most popular and entertaining games available online.</p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3><i class="fas fa-lock"></i> Privacy & Security</h3>
+                    <p>We don't store any personal data or track your game activities. All games are loaded directly from their original sources.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-gamepad"></i> Game Selection</h3>
+                    <p>We carefully select games that are fun, safe to play, and suitable for all ages. New games are added regularly.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Technical Notes</h3>
+                    <p>Some games require direct access to their original websites. For these, we provide direct links with clear indicators.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>GameHub - Play All Games in One Place</p>
+            <div class="copyright">
+                <p>&copy; 2023 GameHub. All rights reserved. | All game content belongs to their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Fullscreen functionality
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const gameFrame = document.querySelector('.game-frame-wrapper');
+        
+        fullscreenBtn.addEventListener('click', () => {
+            toggleFullscreen(gameFrame);
+        });
+        
+        // Toggle fullscreen function
+        function toggleFullscreen(element) {
+            if (!document.fullscreenElement) {
+                if (element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if (element.mozRequestFullScreen) {
+                    element.mozRequestFullScreen();
+                } else if (element.webkitRequestFullscreen) {
+                    element.webkitRequestFullscreen();
+                } else if (element.msRequestFullscreen) {
+                    element.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+        
+        // Restart functionality
+        const restartBtn = document.getElementById('restart-btn');
+        const iframe = document.querySelector('#game-frame');
+        
+        restartBtn.addEventListener('click', () => {
+            restartIframe(iframe);
+        });
+        
+        // Restart iframe function
+        function restartIframe(iframe) {
+            const currentSrc = iframe.src;
+            iframe.src = '';
+            setTimeout(() => {
+                iframe.src = currentSrc;
+            }, 100);
+        }
+        
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Hide all tab content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Show the corresponding content
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-content`).classList.add('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Initialize sound button
+        const soundBtn = document.getElementById('sound-btn');
+        let soundEnabled = true;
+        
+        soundBtn.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            if (soundEnabled) {
+                soundBtn.innerHTML = '<i class="fas fa-volume-up"></i> Sound On';
+            } else {
+                soundBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Sound Off';
+            }
+        });
+        
+        // Pagination functionality
+        const paginationData = {
+            popular: { current: 1, total: 2 },
+            new: { current: 1, total: 2 },
+            external: { current: 1, total: 2 }
+        };
+        
+        // Update page indicator
+        function updatePageIndicator(category) {
+            document.getElementById(`${category}-current`).textContent = paginationData[category].current;
+            document.getElementById(`${category}-total`).textContent = paginationData[category].total;
+        }
+        
+        // Initialize page indicators
+        updatePageIndicator('popular');
+        updatePageIndicator('new');
+        updatePageIndicator('external');
+        
+        // Handle pagination buttons
+        document.querySelectorAll('.prev-btn, .next-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const direction = this.classList.contains('prev-btn') ? -1 : 1;
+                const category = this.getAttribute('data-page');
+                
+                // Calculate new page
+                const newPage = paginationData[category].current + direction;
+                
+                // Validate page range
+                if (newPage >= 1 && newPage <= paginationData[category].total) {
+                    // Hide current page
+                    document.querySelectorAll(`#${category}-content .games-page`).forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    
+                    // Show new page
+                    document.getElementById(`${category}-page-${newPage}`).classList.add('active');
+                    
+                    // Update pagination data
+                    paginationData[category].current = newPage;
+                    updatePageIndicator(category);
+                }
+            });
+        });
+        
+        // Handle games per page selection
+        document.querySelectorAll('.games-per-page select').forEach(select => {
+            select.addEventListener('change', function() {
+                const category = this.id.split('-')[0];
+                const gamesPerPage = parseInt(this.value);
+                
+                // In a real implementation, this would recalculate the number of pages
+                // and re-render the game grid accordingly
+                alert(`Games per page changed to ${gamesPerPage} for ${category} games`);
+            });
+        });
+    </script>
 </body>
-</html> 
+</html>
