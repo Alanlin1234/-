@@ -621,8 +621,8 @@
         
         <div class="game-container">
             <div class="game-header">
-                <h2>Poor Bunny</h2>
-                <p>Help the adorable bunny escape danger in this fast-paced running adventure!</p>
+                <h2 id="current-game-title">Poor Bunny</h2>
+                <p id="current-game-desc">Help the adorable bunny escape danger in this fast-paced running adventure!</p>
             </div>
             
             <div class="game-frame-container">
@@ -653,13 +653,13 @@
         </div>
         
         <div class="game-info">
-            <h3>About Poor Bunny</h3>
-            <p style="margin: 1rem 0;">Poor Bunny is a thrilling endless runner game where you take on the role of a cute bunny trying to escape from various dangers. Jump over obstacles, avoid enemies, and collect coins to unlock new characters and power-ups!</p>
+            <h3 id="current-game-about">About Poor Bunny</h3>
+            <p style="margin: 1rem 0;" id="current-game-details">Poor Bunny is a thrilling endless runner game where you take on the role of a cute bunny trying to escape from various dangers. Jump over obstacles, avoid enemies, and collect coins to unlock new characters and power-ups!</p>
             
             <div class="info-grid">
                 <div class="info-card">
                     <h3>How to Play</h3>
-                    <ul style="margin-left: 1.5rem;">
+                    <ul style="margin-left: 1.5rem;" id="current-game-instructions">
                         <li><strong>Tap or click</strong> to make the bunny jump</li>
                         <li>Jump over obstacles and gaps</li>
                         <li>Collect coins for power-ups</li>
@@ -670,7 +670,7 @@
                 
                 <div class="info-card">
                     <h3>Game Features</h3>
-                    <ul style="margin-left: 1.5rem;">
+                    <ul style="margin-left: 1.5rem;" id="current-game-features">
                         <li>Simple one-touch controls</li>
                         <li>Multiple unlockable characters</li>
                         <li>Power-ups and special abilities</li>
@@ -709,53 +709,53 @@
                 
                 <div class="games-page active" id="popular-page-1">
                     <div class="games-grid">
-                        <div class="game-card">
+                        <div class="game-card" data-game="poor-bunny">
                             <div class="game-thumb">
                                 <i class="fas fa-bunny"></i>
                             </div>
                             <div class="game-content">
                                 <h3 class="game-title">Poor Bunny</h3>
                                 <p class="game-desc">Help the bunny escape danger in this endless runner game.</p>
-                                <button class="btn" style="width:100%;margin-top:10px;">
+                                <button class="btn play-game-btn" style="width:100%;margin-top:10px;">
                                     <i class="fas fa-play"></i> Play Now
                                 </button>
                             </div>
                         </div>
                         
-                        <div class="game-card">
+                        <div class="game-card" data-game="slither">
                             <div class="game-thumb">
                                 <i class="fas fa-snake"></i>
                             </div>
                             <div class="game-content">
                                 <h3 class="game-title">Slither.io</h3>
                                 <p class="game-desc">Grow the longest snake in this multiplayer competition.</p>
-                                <button class="btn" style="width:100%;margin-top:10px;">
+                                <button class="btn play-game-btn" style="width:100%;margin-top:10px;">
                                     <i class="fas fa-play"></i> Play Now
                                 </button>
                             </div>
                         </div>
                         
-                        <div class="game-card">
+                        <div class="game-card" data-game="dino">
                             <div class="game-thumb">
                                 <i class="fas fa-dinosaur"></i>
                             </div>
                             <div class="game-content">
                                 <h3 class="game-title">Chrome Dino</h3>
                                 <p class="game-desc">Help the dinosaur jump over cacti in this endless runner.</p>
-                                <button class="btn" style="width:100%;margin-top:10px;">
+                                <button class="btn play-game-btn" style="width:100%;margin-top:10px;">
                                     <i class="fas fa-play"></i> Play Now
                                 </button>
                             </div>
                         </div>
                         
-                        <div class="game-card">
+                        <div class="game-card" data-game="tetris">
                             <div class="game-thumb">
                                 <i class="fas fa-shapes"></i>
                             </div>
                             <div class="game-content">
                                 <h3 class="game-title">Tetris</h3>
                                 <p class="game-desc">The classic puzzle game that never gets old.</p>
-                                <button class="btn" style="width:100%;margin-top:10px;">
+                                <button class="btn play-game-btn" style="width:100%;margin-top:10px;">
                                     <i class="fas fa-play"></i> Play Now
                                 </button>
                             </div>
@@ -765,53 +765,53 @@
                 
                 <div class="games-page" id="popular-page-2">
                     <div class="games-grid">
-                        <div class="game-card">
+                        <div class="game-card" data-game="chess">
                             <div class="game-thumb">
                                 <i class="fas fa-chess"></i>
                             </div>
                             <div class="game-content">
                                 <h3 class="game-title">Chess Master</h3>
                                 <p class="game-desc">Challenge the computer in this classic strategy game.</p>
-                                <button class="btn" style="width:100%;margin-top:10px;">
+                                <button class="btn play-game-btn" style="width:100%;margin-top:10px;">
                                     <i class="fas fa-play"></i> Play Now
                                 </button>
                             </div>
                         </div>
                         
-                        <div class="game-card">
+                        <div class="game-card" data-game="race">
                             <div class="game-thumb">
                                 <i class="fas fa-car"></i>
                             </div>
                             <div class="game-content">
                                 <h3 class="game-title">Race Challenge</h3>
                                 <p class="game-desc">High-speed racing game with realistic physics.</p>
-                                <button class="btn" style="width:100%;margin-top:10px;">
+                                <button class="btn play-game-btn" style="width:100%;margin-top:10px;">
                                     <i class="fas fa-play"></i> Play Now
                                 </button>
                             </div>
                         </div>
                         
-                        <div class="game-card">
+                        <div class="game-card" data-game="puzzle">
                             <div class="game-thumb">
                                 <i class="fas fa-puzzle-piece"></i>
                             </div>
                             <div class="game-content">
                                 <h3 class="game-title">Jigsaw Puzzle</h3>
                                 <p class="game-desc">Relaxing puzzle game with beautiful images.</p>
-                                <button class="btn" style="width:100%;margin-top:10px;">
+                                <button class="btn play-game-btn" style="width:100%;margin-top:10px;">
                                     <i class="fas fa-play"></i> Play Now
                                 </button>
                             </div>
                         </div>
                         
-                        <div class="game-card">
+                        <div class="game-card" data-game="soccer">
                             <div class="game-thumb">
                                 <i class="fas fa-futbol"></i>
                             </div>
                             <div class="game-content">
                                 <h3 class="game-title">Soccer Stars</h3>
                                 <p class="game-desc">Score goals and win matches in this football game.</p>
-                                <button class="btn" style="width:100%;margin-top:10px;">
+                                <button class="btn play-game-btn" style="width:100%;margin-top:10px;">
                                     <i class="fas fa-play"></i> Play Now
                                 </button>
                             </div>
@@ -850,7 +850,7 @@
                 
                 <div class="games-page active" id="new-page-1">
                     <div class="games-grid">
-                        <div class="game-card">
+                        <div class="game-card" data-game="robot">
                             <div class="game-tag">New</div>
                             <div class="game-thumb">
                                 <i class="fas fa-robot"></i>
@@ -858,13 +858,13 @@
                             <div class="game-content">
                                 <h3 class="game-title">Robot Revolution</h3>
                                 <p class="game-desc">Build and battle robots in this futuristic strategy game.</p>
-                                <button class="btn" style="width:100%;margin-top:10px;">
+                                <button class="btn play-game-btn" style="width:100%;margin-top:10px;">
                                     <i class="fas fa-play"></i> Play Now
                                 </button>
                             </div>
                         </div>
                         
-                        <div class="game-card">
+                        <div class="game-card" data-game="dragon">
                             <div class="game-tag">New</div>
                             <div class="game-thumb">
                                 <i class="fas fa-dragon"></i>
@@ -872,13 +872,13 @@
                             <div class="game-content">
                                 <h3 class="game-title">Dragon Adventure</h3>
                                 <p class="game-desc">Raise your dragon and explore magical lands.</p>
-                                <button class="btn" style="width:100%;margin-top:10px;">
+                                <button class="btn play-game-btn" style="width:100%;margin-top:10px;">
                                     <i class="fas fa-play"></i> Play Now
                                 </button>
                             </div>
                         </div>
                         
-                        <div class="game-card">
+                        <div class="game-card" data-game="beat">
                             <div class="game-tag">New</div>
                             <div class="game-thumb">
                                 <i class="fas fa-music"></i>
@@ -886,13 +886,13 @@
                             <div class="game-content">
                                 <h3 class="game-title">Beat Master</h3>
                                 <p class="game-desc">Rhythm game with the latest chart-topping hits.</p>
-                                <button class="btn" style="width:100%;margin-top:10px;">
+                                <button class="btn play-game-btn" style="width:100%;margin-top:10px;">
                                     <i class="fas fa-play"></i> Play Now
                                 </button>
                             </div>
                         </div>
                         
-                        <div class="game-card">
+                        <div class="game-card" data-game="ghost">
                             <div class="game-tag">New</div>
                             <div class="game-thumb">
                                 <i class="fas fa-ghost"></i>
@@ -900,7 +900,7 @@
                             <div class="game-content">
                                 <h3 class="game-title">Ghost Hunters</h3>
                                 <p class="game-desc">Solve mysteries in haunted locations.</p>
-                                <button class="btn" style="width:100%;margin-top:10px;">
+                                <button class="btn play-game-btn" style="width:100%;margin-top:10px;">
                                     <i class="fas fa-play"></i> Play Now
                                 </button>
                             </div>
@@ -910,7 +910,7 @@
                 
                 <div class="games-page" id="new-page-2">
                     <div class="games-grid">
-                        <div class="game-card">
+                        <div class="game-card" data-game="ocean">
                             <div class="game-tag">New</div>
                             <div class="game-thumb">
                                 <i class="fas fa-fish"></i>
@@ -918,13 +918,13 @@
                             <div class="game-content">
                                 <h3 class="game-title">Ocean Explorer</h3>
                                 <p class="game-desc">Discover underwater worlds and marine life.</p>
-                                <button class="btn" style="width:100%;margin-top:10px;">
+                                <button class="btn play-game-btn" style="width:100%;margin-top:10px;">
                                     <i class="fas fa-play"></i> Play Now
                                 </button>
                             </div>
                         </div>
                         
-                        <div class="game-card">
+                        <div class="game-card" data-game="space">
                             <div class="game-tag">New</div>
                             <div class="game-thumb">
                                 <i class="fas fa-meteor"></i>
@@ -932,13 +932,13 @@
                             <div class="game-content">
                                 <h3 class="game-title">Space Race</h3>
                                 <p class="game-desc">Build your space empire and explore the galaxy.</p>
-                                <button class="btn" style="width:100%;margin-top:10px;">
+                                <button class="btn play-game-btn" style="width:100%;margin-top:10px;">
                                     <i class="fas fa-play"></i> Play Now
                                 </button>
                             </div>
                         </div>
                         
-                        <div class="game-card">
+                        <div class="game-card" data-game="royal">
                             <div class="game-tag">New</div>
                             <div class="game-thumb">
                                 <i class="fas fa-crown"></i>
@@ -946,13 +946,13 @@
                             <div class="game-content">
                                 <h3 class="game-title">Royal Challenge</h3>
                                 <p class="game-desc">Strategy game set in medieval times.</p>
-                                <button class="btn" style="width:100%;margin-top:10px;">
+                                <button class="btn play-game-btn" style="width:100%;margin-top:10px;">
                                     <i class="fas fa-play"></i> Play Now
                                 </button>
                             </div>
                         </div>
                         
-                        <div class="game-card">
+                        <div class="game-card" data-game="parkour">
                             <div class="game-tag">New</div>
                             <div class="game-thumb">
                                 <i class="fas fa-running"></i>
@@ -960,7 +960,7 @@
                             <div class="game-content">
                                 <h3 class="game-title">Parkour Masters</h3>
                                 <p class="game-desc">Navigate urban environments with parkour moves.</p>
-                                <button class="btn" style="width:100%;margin-top:10px;">
+                                <button class="btn play-game-btn" style="width:100%;margin-top:10px;">
                                     <i class="fas fa-play"></i> Play Now
                                 </button>
                             </div>
@@ -1179,6 +1179,346 @@
     </footer>
 
     <script>
+        // Game data for each game
+        const gamesData = {
+            'poor-bunny': {
+                title: 'Poor Bunny',
+                desc: 'Help the adorable bunny escape danger in this fast-paced running adventure!',
+                url: 'https://cpsgames.org/splash/poor-bunny',
+                about: 'About Poor Bunny',
+                details: 'Poor Bunny is a thrilling endless runner game where you take on the role of a cute bunny trying to escape from various dangers. Jump over obstacles, avoid enemies, and collect coins to unlock new characters and power-ups!',
+                instructions: [
+                    '<strong>Tap or click</strong> to make the bunny jump',
+                    'Jump over obstacles and gaps',
+                    'Collect coins for power-ups',
+                    'Avoid enemies and traps',
+                    'Complete daily challenges'
+                ],
+                features: [
+                    'Simple one-touch controls',
+                    'Multiple unlockable characters',
+                    'Power-ups and special abilities',
+                    'Global leaderboards',
+                    'Daily challenges and rewards'
+                ]
+            },
+            'slither': {
+                title: 'Slither.io',
+                desc: 'Grow the longest snake in this multiplayer competition.',
+                url: 'https://slither.io/',
+                about: 'About Slither.io',
+                details: 'Slither.io is a massively multiplayer game where you control a snake and try to grow as long as possible by eating colorful pellets and other players\' remains. Avoid colliding with other snakes!',
+                instructions: [
+                    '<strong>Move your mouse</strong> to control your snake',
+                    'Eat colored pellets to grow longer',
+                    'Trap other snakes to make them crash into you',
+                    'Avoid colliding with other snakes',
+                    'The longer you are, the higher your score'
+                ],
+                features: [
+                    'Massively multiplayer online gameplay',
+                    'Simple mouse controls',
+                    'Colorful and vibrant visuals',
+                    'Global leaderboard',
+                    'Competitive gameplay'
+                ]
+            },
+            'dino': {
+                title: 'Chrome Dino',
+                desc: 'Help the dinosaur jump over cacti in this endless runner.',
+                url: 'https://chromedino.com/',
+                about: 'About Chrome Dino',
+                details: 'Chrome Dino is the hidden game that appears when your Chrome browser has no internet connection. Control the T-Rex and jump over cacti and avoid flying pterodactyls in this endless runner.',
+                instructions: [
+                    '<strong>Press SPACE or UP ARROW</strong> to jump',
+                    'Press DOWN ARROW to duck under obstacles',
+                    'Jump over cacti and flying pterodactyls',
+                    'The game speeds up as you progress',
+                    'See how far you can go!'
+                ],
+                features: [
+                    'Simple keyboard controls',
+                    'Increasing difficulty over time',
+                    'Day and night cycles',
+                    'High score tracking',
+                    'Offline play capability'
+                ]
+            },
+            'tetris': {
+                title: 'Tetris',
+                desc: 'The classic puzzle game that never gets old.',
+                url: 'https://tetris.com/play-tetris',
+                about: 'About Tetris',
+                details: 'Tetris is the iconic tile-matching puzzle game created in 1984. Arrange falling tetrominoes to complete horizontal lines without gaps. The game ends when the blocks stack up to the top of the playing field.',
+                instructions: [
+                    '<strong>Arrow keys</strong> to move and rotate pieces',
+                    'Left/Right arrows to move horizontally',
+                    'Up arrow to rotate pieces',
+                    'Down arrow to speed up falling',
+                    'Complete lines to earn points'
+                ],
+                features: [
+                    'Classic Tetris gameplay',
+                    'Multiple difficulty levels',
+                    'Modern and retro visual styles',
+                    'Score tracking and level progression',
+                    'Endless gameplay mode'
+                ]
+            },
+            'chess': {
+                title: 'Chess Master',
+                desc: 'Challenge the computer in this classic strategy game.',
+                url: 'https://www.chess.com/play/computer',
+                about: 'About Chess Master',
+                details: 'Chess Master is a digital version of the classic strategy board game. Play against the computer at various difficulty levels, learn strategies, and improve your chess skills.',
+                instructions: [
+                    '<strong>Click and drag</strong> to move pieces',
+                    'Each piece moves in specific ways',
+                    'Protect your king while attacking opponent\'s',
+                    'Use special moves like castling and en passant',
+                    'Checkmate the opponent king to win'
+                ],
+                features: [
+                    'Multiple difficulty levels',
+                    'Tutorials for beginners',
+                    'Move suggestions and hints',
+                    'Analysis of your games',
+                    'Daily puzzles and challenges'
+                ]
+            },
+            'race': {
+                title: 'Race Challenge',
+                desc: 'High-speed racing game with realistic physics.',
+                url: 'https://www.crazygames.com/game/racing',
+                about: 'About Race Challenge',
+                details: 'Race Challenge is a high-speed racing game featuring realistic physics, various tracks, and multiple vehicles. Compete against AI opponents or race against the clock in time trial mode.',
+                instructions: [
+                    '<strong>Arrow keys</strong> to control your vehicle',
+                    'Left/Right arrows to steer',
+                    'Up arrow to accelerate',
+                    'Down arrow to brake/reverse',
+                    'Collect power-ups for advantages'
+                ],
+                features: [
+                    'Multiple tracks and environments',
+                    'Various vehicles with different stats',
+                    'Realistic physics engine',
+                    'Power-ups and special abilities',
+                    'Leaderboards and achievements'
+                ]
+            },
+            'puzzle': {
+                title: 'Jigsaw Puzzle',
+                desc: 'Relaxing puzzle game with beautiful images.',
+                url: 'https://www.jigsawplanet.com/',
+                about: 'About Jigsaw Puzzle',
+                details: 'Jigsaw Puzzle is a relaxing game where you assemble beautiful images from scattered pieces. Choose from thousands of puzzles with varying difficulty levels and piece counts.',
+                instructions: [
+                    '<strong>Drag and drop</strong> pieces to assemble the puzzle',
+                    'Rotate pieces with right-click or rotation button',
+                    'Sort pieces by edge pieces first',
+                    'Group pieces by color or pattern',
+                    'Complete the image to win'
+                ],
+                features: [
+                    'Thousands of beautiful images',
+                    'Adjustable difficulty (piece count)',
+                    'Piece rotation capability',
+                    'Hint system for beginners',
+                    'Save and resume puzzles'
+                ]
+            },
+            'soccer': {
+                title: 'Soccer Stars',
+                desc: 'Score goals and win matches in this football game.',
+                url: 'https://www.crazygames.com/game/soccer-stars',
+                about: 'About Soccer Stars',
+                details: 'Soccer Stars is a fun, physics-based football game where you flick your players to kick the ball and score goals. Play against the computer or challenge friends in multiplayer mode.',
+                instructions: [
+                    '<strong>Drag and release</strong> to flick players',
+                    'Aim for the goal or pass to teammates',
+                    'Manage your energy for powerful shots',
+                    'Defend your goal against opponent attacks',
+                    'Score more goals than your opponent'
+                ],
+                features: [
+                    'Physics-based gameplay',
+                    'Single player and multiplayer modes',
+                    'Team customization options',
+                    'Tournaments and leagues',
+                    'Skill-based progression system'
+                ]
+            },
+            'robot': {
+                title: 'Robot Revolution',
+                desc: 'Build and battle robots in this futuristic strategy game.',
+                url: 'https://www.crazygames.com/game/robot-revolution',
+                about: 'About Robot Revolution',
+                details: 'Robot Revolution is a futuristic strategy game where you design, build, and program robots to battle against opponents. Customize your robots with various weapons and defenses.',
+                instructions: [
+                    '<strong>Design your robot</strong> with different components',
+                    'Program your robot\'s behavior',
+                    'Choose weapons and defenses',
+                    'Battle against AI or other players',
+                    'Earn resources to upgrade your robot'
+                ],
+                features: [
+                    'Extensive robot customization',
+                    'Programming interface for AI behavior',
+                    'Multiple battle arenas',
+                    'Resource collection and management',
+                    'Ranked multiplayer battles'
+                ]
+            },
+            'dragon': {
+                title: 'Dragon Adventure',
+                desc: 'Raise your dragon and explore magical lands.',
+                url: 'https://www.crazygames.com/game/dragon-adventure',
+                about: 'About Dragon Adventure',
+                details: 'Dragon Adventure is a fantasy game where you raise and train your own dragon. Explore magical lands, complete quests, and battle mythical creatures in this enchanting adventure.',
+                instructions: [
+                    '<strong>Care for your dragon</strong> by feeding and training',
+                    'Explore different magical realms',
+                    'Complete quests to earn rewards',
+                    'Battle mythical creatures',
+                    'Unlock new dragon abilities'
+                ],
+                features: [
+                    'Dragon customization and evolution',
+                    'Open world exploration',
+                    'Quest system with storylines',
+                    'Turn-based combat system',
+                    'Magical abilities and spells'
+                ]
+            },
+            'beat': {
+                title: 'Beat Master',
+                desc: 'Rhythm game with the latest chart-topping hits.',
+                url: 'https://www.crazygames.com/game/beat-master',
+                about: 'About Beat Master',
+                details: 'Beat Master is a rhythm game where you tap, swipe, and hold to the beat of popular songs. Test your rhythm skills and compete for high scores on global leaderboards.',
+                instructions: [
+                    '<strong>Tap, swipe, and hold</strong> to the rhythm',
+                    'Follow the on-screen prompts',
+                    'Maintain your combo for higher scores',
+                    'Unlock new songs as you progress',
+                    'Compete on global leaderboards'
+                ],
+                features: [
+                    'Popular chart-topping songs',
+                    'Multiple difficulty levels',
+                    'Customizable controls',
+                    'Global leaderboards',
+                    'Daily challenges and events'
+                ]
+            },
+            'ghost': {
+                title: 'Ghost Hunters',
+                desc: 'Solve mysteries in haunted locations.',
+                url: 'https://www.crazygames.com/game/ghost-hunters',
+                about: 'About Ghost Hunters',
+                details: 'Ghost Hunters is a paranormal investigation game where you explore haunted locations, gather evidence, and solve mysteries. Use specialized equipment to detect and capture ghosts.',
+                instructions: [
+                    '<strong>Explore haunted locations</strong> with your team',
+                    'Use specialized ghost-hunting equipment',
+                    'Gather evidence of paranormal activity',
+                    'Identify the type of ghost',
+                    'Complete investigations successfully'
+                ],
+                features: [
+                    'Realistic ghost-hunting equipment',
+                    'Multiple haunted locations',
+                    'Different types of ghosts with unique behaviors',
+                    'Cooperative multiplayer mode',
+                    'Progression system with upgrades'
+                ]
+            },
+            'ocean': {
+                title: 'Ocean Explorer',
+                desc: 'Discover underwater worlds and marine life.',
+                url: 'https://www.crazygames.com/game/ocean-explorer',
+                about: 'About Ocean Explorer',
+                details: 'Ocean Explorer is an underwater adventure game where you dive into the depths of the ocean, discover marine life, and explore sunken treasures. Learn about ocean ecosystems while having fun.',
+                instructions: [
+                    '<strong>Navigate underwater</strong> with directional controls',
+                    'Collect marine specimens and treasures',
+                    'Avoid dangerous sea creatures',
+                    'Complete research missions',
+                    'Upgrade your diving equipment'
+                ],
+                features: [
+                    'Beautiful underwater environments',
+                    'Diverse marine life',
+                    'Educational content about ocean ecosystems',
+                    'Treasure hunting and collection',
+                    'Equipment upgrades and customization'
+                ]
+            },
+            'space': {
+                title: 'Space Race',
+                desc: 'Build your space empire and explore the galaxy.',
+                url: 'https://www.crazygames.com/game/space-race',
+                about: 'About Space Race',
+                details: 'Space Race is a strategy game set in the cosmos where you build your space empire, colonize planets, research technologies, and compete against other space-faring civilizations.',
+                instructions: [
+                    '<strong>Build and expand</strong> your space empire',
+                    'Colonize planets and extract resources',
+                    'Research new technologies',
+                    'Form alliances or declare war',
+                    'Explore the galaxy for new opportunities'
+                ],
+                features: [
+                    'Galaxy-scale strategy gameplay',
+                    'Planet colonization and management',
+                    'Technology research tree',
+                    'Diplomacy and warfare systems',
+                    'Multiplayer galactic conquest'
+                ]
+            },
+            'royal': {
+                title: 'Royal Challenge',
+                desc: 'Strategy game set in medieval times.',
+                url: 'https://www.crazygames.com/game/royal-challenge',
+                about: 'About Royal Challenge',
+                details: 'Royal Challenge is a medieval strategy game where you build your kingdom, manage resources, train armies, and engage in epic battles. Become the most powerful ruler in the realm.',
+                instructions: [
+                    '<strong>Build and upgrade</strong> your kingdom',
+                    'Manage resources like food, gold, and wood',
+                    'Train different types of military units',
+                    'Form alliances with other players',
+                    'Conquer territories and expand your realm'
+                ],
+                features: [
+                    'Medieval kingdom building',
+                    'Resource management system',
+                    'Army composition and tactics',
+                    'Alliance system with chat',
+                    'Epic castle sieges and battles'
+                ]
+            },
+            'parkour': {
+                title: 'Parkour Masters',
+                desc: 'Navigate urban environments with parkour moves.',
+                url: 'https://www.crazygames.com/game/parkour-masters',
+                about: 'About Parkour Masters',
+                details: 'Parkour Masters is an action game where you navigate urban environments using parkour moves like running, jumping, climbing, and rolling. Complete challenging courses as fast as possible.',
+                instructions: [
+                    '<strong>Use WASD or arrow keys</strong> to move',
+                    'Space to jump, Shift to sprint',
+                    'Time your jumps precisely',
+                    'Chain moves together for combos',
+                    'Complete courses as fast as possible'
+                ],
+                features: [
+                    'Fluid parkour movement system',
+                    'Multiple urban environments',
+                    'Time trial challenges',
+                    'Character customization',
+                    'Leaderboards for each course'
+                ]
+            }
+        };
+
         // Fullscreen functionality
         const fullscreenBtn = document.getElementById('fullscreen-btn');
         const gameFrame = document.querySelector('.game-frame-wrapper');
@@ -1271,9 +1611,9 @@
         soundBtn.addEventListener('click', () => {
             soundEnabled = !soundEnabled;
             if (soundEnabled) {
-                soundBtn.innerHTML = '<i class="fas fa-volume-up"></i> Sound On';
+                soundBtn.innerHTML = '<i class="fas fa-volume-up"></i> Sound';
             } else {
-                soundBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Sound Off';
+                soundBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Sound';
             }
         });
         
@@ -1328,10 +1668,4 @@
                 const gamesPerPage = parseInt(this.value);
                 
                 // In a real implementation, this would recalculate the number of pages
-                // and re-render the game grid accordingly
-                alert(`Games per page changed to ${gamesPerPage} for ${category} games`);
-            });
-        });
-    </script>
-</body>
-</html>
+                // and
