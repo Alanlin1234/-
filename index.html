@@ -364,13 +364,49 @@
             color: white;
             padding: 2rem 0;
             margin-top: 4rem;
-            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-main p {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-light);
+        }
+        
+        .footer-links .separator {
+            color: #666;
         }
         
         .copyright {
             padding-top: 1rem;
             color: #aaa;
             font-size: 0.9rem;
+            text-align: center;
+            border-top: 1px solid #333;
         }
         
         .warning-banner {
@@ -553,6 +589,16 @@
                 align-items: flex-start;
                 gap: 1rem;
             }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            
+            .footer-links {
+                justify-content: center;
+            }
         }
         
         @media (max-width: 480px) {
@@ -599,6 +645,9 @@
                         <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
                         <li><a href="#featured"><i class="fas fa-star"></i> Featured</a></li>
                         <li><a href="#games"><i class="fas fa-dice"></i> Games</a></li>
+                        <li><a href="categories.html"><i class="fas fa-th-large"></i> Categories</a></li>
+                        <li><a href="guides.html"><i class="fas fa-book"></i> Guides</a></li>
+                        <li><a href="reviews.html"><i class="fas fa-comments"></i> Reviews</a></li>
                         <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
                     </ul>
                 </nav>
@@ -1171,9 +1220,24 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>GameHub - Play All Games in One Place</p>
+            <div class="footer-content">
+                <div class="footer-main">
+                    <p>GameHub - Play All Games in One Place</p>
+                </div>
+                            <div class="footer-links">
+                <a href="categories.html">游戏分类</a>
+                <span class="separator">|</span>
+                <a href="guides.html">游戏攻略</a>
+                <span class="separator">|</span>
+                <a href="reviews.html">用户评论</a>
+                <span class="separator">|</span>
+                <a href="terms.html">服务条款</a>
+                <span class="separator">|</span>
+                <a href="privacy.html">隐私政策</a>
+            </div>
+            </div>
             <div class="copyright">
-                <p>&copy; 2023 GameHub. All rights reserved. | All game content belongs to their respective owners.</p>
+                <p>&copy; 2024 GameHub. All rights reserved. | All game content belongs to their respective owners.</p>
             </div>
         </div>
     </footer>

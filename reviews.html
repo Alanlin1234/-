@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏评论 - GameHub</title>
+    <meta name="description" content="GameHub游戏评论 - 查看和分享游戏体验">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #8a2be2;
+            --primary-light: #9d4fe9;
+            --primary-dark: #6a11cb;
+            --secondary: #ff6b6b;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gray: #e0e0e0;
+            --text: #333;
+            --text-light: #666;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            color: var(--primary-light);
+        }
+        
+        .logo a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-light);
+            border-radius: 25px;
+            transition: var(--transition);
+        }
+        
+        .back-btn:hover {
+            background: var(--primary-light);
+            color: white;
+        }
+        
+        .hero {
+            padding: 3rem 0;
+            text-align: center;
+            background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.8)), 
+                        url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3') no-repeat center/cover;
+            color: white;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .review-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .game-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .game-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+        
+        .game-details h2 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .game-details p {
+            color: var(--text-light);
+        }
+        
+        .overall-rating {
+            text-align: center;
+        }
+        
+        .rating-score {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .rating-stars {
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .rating-count {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .review-form {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
+        }
+        
+        .star-rating {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .star-rating i {
+            cursor: pointer;
+            color: #ddd;
+            transition: var(--transition);
+        }
+        
+        .star-rating i:hover,
+        .star-rating i.active {
+            color: #ffd700;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+        }
+        
+        .btn-secondary {
+            background: var(--light);
+            color: var(--dark);
+            border: 1px solid var(--gray);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .reviews-list {
+            margin-top: 2rem;
+        }
+        
+        .review-item {
+            border: 1px solid var(--gray);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: white;
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .reviewer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .reviewer-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .review-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .review-rating {
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+        
+        .review-content {
+            margin-bottom: 1rem;
+        }
+        
+        .review-text {
+            line-height: 1.6;
+            color: var(--text);
+        }
+        
+        .review-actions {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .action-btn {
+            color: var(--text-light);
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .action-btn:hover {
+            color: var(--primary);
+        }
+        
+        .filter-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--gray);
+            border-radius: 25px;
+            background: white;
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            text-align: center;
+        }
+        
+        .copyright {
+            padding-top: 1rem;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .review-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .filter-section {
+                flex-direction: column;
+            }
+            
+            .review-actions {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-gamepad"></i>
+                        <span>GameHub</span>
+                    </a>
+                </div>
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> 返回首页
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>游戏评论</h1>
+            <p>分享您的游戏体验，查看其他玩家的评论</p>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="container">
+        <!-- Poor Bunny Reviews -->
+        <div class="review-section">
+            <div class="review-header">
+                <div class="game-info">
+                    <i class="fas fa-bunny game-icon"></i>
+                    <div class="game-details">
+                        <h2>Poor Bunny</h2>
+                        <p>动作冒险游戏</p>
+                    </div>
+                </div>
+                <div class="overall-rating">
+                    <div class="rating-score">4.2</div>
+                    <div class="rating-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="rating-count">1,234 条评论</div>
+                </div>
+            </div>
+            
+            <!-- Review Form -->
+            <div class="review-form">
+                <h3>分享您的评论</h3>
+                <form id="reviewForm">
+                    <div class="form-group">
+                        <label for="reviewerName">您的昵称</label>
+                        <input type="text" id="reviewerName" class="form-control" placeholder="请输入您的昵称" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>评分</label>
+                        <div class="star-rating" id="starRating">
+                            <i class="far fa-star" data-rating="1"></i>
+                            <i class="far fa-star" data-rating="2"></i>
+                            <i class="far fa-star" data-rating="3"></i>
+                            <i class="far fa-star" data-rating="4"></i>
+                            <i class="far fa-star" data-rating="5"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reviewText">评论内容</label>
+                        <textarea id="reviewText" class="form-control" rows="4" placeholder="分享您的游戏体验..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">提交评论</button>
+                </form>
+            </div>
+            
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <button class="filter-btn active" data-filter="all">全部评论</button>
+                <button class="filter-btn" data-filter="5">5星</button>
+                <button class="filter-btn" data-filter="4">4星</button>
+                <button class="filter-btn" data-filter="3">3星</button>
+                <button class="filter-btn" data-filter="2">2星</button>
+                <button class="filter-btn" data-filter="1">1星</button>
+            </div>
+            
+            <!-- Reviews List -->
+            <div class="reviews-list">
+                <div class="review-item" data-rating="5">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">张</div>
+                            <div>
+                                <div class="reviewer-name">张小明</div>
+                                <div class="review-date">2024-01-15</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <div class="review-text">
+                            这个游戏太好玩了！小兔子很可爱，游戏操作简单但很有挑战性。我已经玩了几个小时了，每次都能发现新的技巧。强烈推荐给喜欢跑酷游戏的玩家！
+                        </div>
+                    </div>
+                    <div class="review-actions">
+                        <a href="#" class="action-btn"><i class="fas fa-thumbs-up"></i> 有用 (45)</a>
+                        <a href="#" class="action-btn"><i class="fas fa-reply"></i> 回复</a>
+                    </div>
+                </div>
+                
+                <div class="review-item" data-rating="4">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">李</div>
+                            <div>
+                                <div class="reviewer-name">李小红</div>
+                                <div class="review-date">2024-01-14</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <div class="review-text">
+                            游戏画面很精美，音效也不错。难度适中，适合各个年龄段的玩家。希望能增加更多的角色和道具。
+                        </div>
+                    </div>
+                    <div class="review-actions">
+                        <a href="#" class="action-btn"><i class="fas fa-thumbs-up"></i> 有用 (23)</a>
+                        <a href="#" class="action-btn"><i class="fas fa-reply"></i> 回复</a>
+                    </div>
+                </div>
+                
+                <div class="review-item" data-rating="3">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">王</div>
+                            <div>
+                                <div class="reviewer-name">王大力</div>
+                                <div class="review-date">2024-01-13</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <div class="review-text">
+                            游戏还可以，但是有些关卡太难了，希望能调整一下难度。另外广告有点多，影响游戏体验。
+                        </div>
+                    </div>
+                    <div class="review-actions">
+                        <a href="#" class="action-btn"><i class="fas fa-thumbs-up"></i> 有用 (8)</a>
+                        <a href="#" class="action-btn"><i class="fas fa-reply"></i> 回复</a>
+                    </div>
+                </div>
+                
+                <div class="review-item" data-rating="5">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">陈</div>
+                            <div>
+                                <div class="reviewer-name">陈小美</div>
+                                <div class="review-date">2024-01-12</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <div class="review-text">
+                            这是我玩过的最好的跑酷游戏之一！画面精美，操作流畅，关卡设计很有创意。每天都会玩一会儿，已经解锁了所有角色！
+                        </div>
+                    </div>
+                    <div class="review-actions">
+                        <a href="#" class="action-btn"><i class="fas fa-thumbs-up"></i> 有用 (67)</a>
+                        <a href="#" class="action-btn"><i class="fas fa-reply"></i> 回复</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>GameHub - Play All Games in One Place</p>
+            <div class="copyright">
+                <p>&copy; 2024 GameHub. All rights reserved. | All game content belongs to their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Star rating functionality
+        const starRating = document.getElementById('starRating');
+        const stars = starRating.querySelectorAll('i');
+        let selectedRating = 0;
+
+        stars.forEach((star, index) => {
+            star.addEventListener('click', () => {
+                selectedRating = index + 1;
+                updateStars();
+            });
+        });
+
+        function updateStars() {
+            stars.forEach((star, index) => {
+                if (index < selectedRating) {
+                    star.classList.remove('far');
+                    star.classList.add('fas');
+                } else {
+                    star.classList.remove('fas');
+                    star.classList.add('far');
+                }
+            });
+        }
+
+        // Review form submission
+        const reviewForm = document.getElementById('reviewForm');
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('reviewerName').value;
+            const text = document.getElementById('reviewText').value;
+            
+            if (selectedRating === 0) {
+                alert('请选择评分');
+                return;
+            }
+            
+            // Here you would typically send the data to a server
+            alert('评论提交成功！');
+            reviewForm.reset();
+            selectedRating = 0;
+            updateStars();
+        });
+
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const reviewItems = document.querySelectorAll('.review-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Filter reviews
+                reviewItems.forEach(item => {
+                    const rating = item.getAttribute('data-rating');
+                    if (filter === 'all' || rating === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

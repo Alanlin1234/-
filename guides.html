@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏攻略 - GameHub</title>
+    <meta name="description" content="GameHub游戏攻略 - 详细的游戏技巧和攻略指南">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #8a2be2;
+            --primary-light: #9d4fe9;
+            --primary-dark: #6a11cb;
+            --secondary: #ff6b6b;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gray: #e0e0e0;
+            --text: #333;
+            --text-light: #666;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            color: var(--primary-light);
+        }
+        
+        .logo a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-light);
+            border-radius: 25px;
+            transition: var(--transition);
+        }
+        
+        .back-btn:hover {
+            background: var(--primary-light);
+            color: white;
+        }
+        
+        .hero {
+            padding: 3rem 0;
+            text-align: center;
+            background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.8)), 
+                        url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3') no-repeat center/cover;
+            color: white;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .guide-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .guide-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .guide-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+        
+        .guide-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+        }
+        
+        .guide-subtitle {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+        
+        .guide-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .guide-content h3 {
+            color: var(--primary);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .guide-content h4 {
+            color: var(--dark);
+            margin: 1.2rem 0 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        .guide-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .guide-content ul {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .guide-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .guide-content strong {
+            color: var(--dark);
+        }
+        
+        .tip-box {
+            background: #f0f8ff;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .tip-box h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning-box h4 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+        }
+        
+        .difficulty-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .difficulty-easy {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .difficulty-medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .difficulty-hard {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+        }
+        
+        .btn-secondary {
+            background: var(--light);
+            color: var(--dark);
+            border: 1px solid var(--gray);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .guide-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            text-align: center;
+        }
+        
+        .copyright {
+            padding-top: 1rem;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .guide-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .guide-actions {
+                flex-direction: column;
+            }
+            
+            .guide-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-gamepad"></i>
+                        <span>GameHub</span>
+                    </a>
+                </div>
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> 返回首页
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>游戏攻略</h1>
+            <p>掌握游戏技巧，提升游戏体验</p>
+        </div>
+    </section>
+
+    <!-- Guides Section -->
+    <section class="container">
+        <!-- Poor Bunny 攻略 -->
+        <div class="guide-section">
+            <div class="guide-header">
+                <i class="fas fa-bunny guide-icon"></i>
+                <div>
+                    <h2 class="guide-title">Poor Bunny 攻略</h2>
+                    <p class="guide-subtitle">帮助小兔子逃离危险的完整指南</p>
+                </div>
+            </div>
+            
+            <div class="difficulty-indicator difficulty-medium">
+                <i class="fas fa-star"></i>
+                <span>中等难度</span>
+            </div>
+            
+            <div class="guide-content">
+                <h3>游戏概述</h3>
+                <p>Poor Bunny是一款经典的跑酷游戏，玩家需要控制一只可爱的小兔子，通过各种障碍物和陷阱，尽可能跑得更远。游戏采用简单的点击控制，但需要精确的时机和策略。</p>
+                
+                <h3>基本操作</h3>
+                <ul>
+                    <li><strong>点击屏幕：</strong>让兔子跳跃</li>
+                    <li><strong>双击：</strong>进行二段跳（某些版本支持）</li>
+                    <li><strong>长按：</strong>进行滑行（某些版本支持）</li>
+                </ul>
+                
+                <h3>游戏技巧</h3>
+                <h4>1. 跳跃时机</h4>
+                <p>观察障碍物的距离和高度，提前预判跳跃时机。不要等到最后一刻才跳跃，这样容易失败。</p>
+                
+                <h4>2. 收集道具</h4>
+                <p>尽可能收集路上的胡萝卜和金币，这些可以解锁新的角色和道具。</p>
+                
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> 小贴士</h4>
+                    <p>在跳跃时保持冷静，不要连续快速点击，这会导致兔子跳跃过高而撞到上方的障碍物。</p>
+                </div>
+                
+                <h4>3. 障碍物识别</h4>
+                <ul>
+                    <li><strong>仙人掌：</strong>需要跳跃通过</li>
+                    <li><strong>坑洞：</strong>需要跳跃或滑行</li>
+                    <li><strong>飞鸟：</strong>需要蹲下或跳跃躲避</li>
+                    <li><strong>岩石：</strong>需要跳跃通过</li>
+                </ul>
+                
+                <h3>高级技巧</h3>
+                <h4>1. 连击系统</h4>
+                <p>连续收集道具可以获得连击奖励，提高得分倍数。保持连击状态是获得高分的关键。</p>
+                
+                <h4>2. 角色选择</h4>
+                <p>不同角色有不同的特殊能力：
+                <ul>
+                    <li><strong>普通兔子：</strong>平衡型角色</li>
+                    <li><strong>忍者兔：</strong>跳跃能力更强</li>
+                    <li><strong>机械兔：</strong>可以飞行一段距离</li>
+                    <li><strong>魔法兔：</strong>可以瞬移</li>
+                </ul>
+                
+                <h4>3. 道具使用</h4>
+                <p>合理使用道具可以大大提高生存时间：
+                <ul>
+                    <li><strong>磁铁：</strong>自动收集附近道具</li>
+                    <li><strong>护盾：</strong>可以承受一次伤害</li>
+                    <li><strong>加速：</strong>临时提高移动速度</li>
+                    <li><strong>复活：</strong>死亡后可以复活一次</li>
+                </ul>
+                
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> 注意事项</h4>
+                    <p>游戏速度会随着距离增加而加快，后期需要更快的反应速度。建议在前期多练习，熟悉各种障碍物的应对方法。</p>
+                </div>
+                
+                <h3>得分策略</h3>
+                <p>要获得高分，需要：
+                <ul>
+                    <li>尽可能跑得更远</li>
+                    <li>收集所有可见的道具</li>
+                    <li>保持连击状态</li>
+                    <li>完成每日挑战</li>
+                    <li>使用合适的角色和道具</li>
+                </ul>
+                
+                <div class="guide-actions">
+                    <a href="index.html#featured" class="btn">立即游戏</a>
+                    <a href="#" class="btn btn-secondary">查看视频攻略</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tetris 攻略 -->
+        <div class="guide-section">
+            <div class="guide-header">
+                <i class="fas fa-shapes guide-icon"></i>
+                <div>
+                    <h2 class="guide-title">Tetris 攻略</h2>
+                    <p class="guide-subtitle">俄罗斯方块大师指南</p>
+                </div>
+            </div>
+            
+            <div class="difficulty-indicator difficulty-hard">
+                <i class="fas fa-star"></i>
+                <span>高难度</span>
+            </div>
+            
+            <div class="guide-content">
+                <h3>游戏概述</h3>
+                <p>Tetris是一款经典的益智游戏，玩家需要将不同形状的方块排列成完整的横行，消除行数越多得分越高。游戏考验空间思维和反应速度。</p>
+                
+                <h3>基本操作</h3>
+                <ul>
+                    <li><strong>左右箭头：</strong>移动方块</li>
+                    <li><strong>上箭头：</strong>旋转方块</li>
+                    <li><strong>下箭头：</strong>加速下落</li>
+                    <li><strong>空格键：</strong>直接落到底部</li>
+                </ul>
+                
+                <h3>方块类型</h3>
+                <p>游戏中有7种不同的方块形状，每种都有不同的特点：
+                <ul>
+                    <li><strong>I型：</strong>长条形，可以消除4行</li>
+                    <li><strong>O型：</strong>正方形，稳定但不易消除</li>
+                    <li><strong>T型：</strong>T形状，适合填补缺口</li>
+                    <li><strong>S型：</strong>S形状，需要配合使用</li>
+                    <li><strong>Z型：</strong>Z形状，与S型类似</li>
+                    <li><strong>J型：</strong>L形状的变体</li>
+                    <li><strong>L型：</strong>L形状，适合填补角落</li>
+                </ul>
+                
+                <h3>高级技巧</h3>
+                <h4>1. T-Spin技巧</h4>
+                <p>T-Spin是Tetris中的高级技巧，可以大幅提高得分。将T型方块旋转到特殊位置，即使没有完整的行也能得分。</p>
+                
+                <h4>2. 堆叠策略</h4>
+                <p>保持场地平整，避免出现过高的山峰。在右侧留出空间，方便放置长条形方块。</p>
+                
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> 小贴士</h4>
+                    <p>学会"预览"功能，提前规划下一步的放置位置。这样可以避免临时慌乱。</p>
+                </div>
+                
+                <h4>3. 连击技巧</h4>
+                <p>连续消除多行可以获得连击奖励。尝试一次消除2-4行，而不是每次都只消除1行。</p>
+                
+                <h3>得分系统</h3>
+                <ul>
+                    <li><strong>单行消除：</strong>100分</li>
+                    <li><strong>双行消除：</strong>300分</li>
+                    <li><strong>三行消除：</strong>500分</li>
+                    <li><strong>四行消除：</strong>800分</li>
+                    <li><strong>T-Spin：</strong>额外加分</li>
+                    <li><strong>连击：</strong>每连击一次额外加分</li>
+                </ul>
+                
+                <div class="guide-actions">
+                    <a href="index.html#featured" class="btn">立即游戏</a>
+                    <a href="#" class="btn btn-secondary">查看视频攻略</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slither.io 攻略 -->
+        <div class="guide-section">
+            <div class="guide-header">
+                <i class="fas fa-snake guide-icon"></i>
+                <div>
+                    <h2 class="guide-title">Slither.io 攻略</h2>
+                    <p class="guide-subtitle">成为最长的蛇</p>
+                </div>
+            </div>
+            
+            <div class="difficulty-indicator difficulty-medium">
+                <i class="fas fa-star"></i>
+                <span>中等难度</span>
+            </div>
+            
+            <div class="guide-content">
+                <h3>游戏概述</h3>
+                <p>Slither.io是一款多人在线游戏，玩家控制一条蛇，通过吃食物和击败其他玩家来增长身体长度。游戏考验策略和反应速度。</p>
+                
+                <h3>基本操作</h3>
+                <ul>
+                    <li><strong>鼠标移动：</strong>控制蛇的移动方向</li>
+                    <li><strong>左键点击：</strong>加速移动</li>
+                    <li><strong>右键点击：</strong>释放光点（某些版本）</li>
+                </ul>
+                
+                <h3>游戏策略</h3>
+                <h4>1. 初期发展</h4>
+                <p>游戏开始时，专注于收集食物来增长长度。避免与其他玩家接触，保持安全距离。</p>
+                
+                <h4>2. 攻击技巧</h4>
+                <p>当你的蛇足够长时，可以尝试攻击其他玩家：
+                <ul>
+                    <li>将其他蛇围困在角落</li>
+                    <li>利用加速功能快速移动</li>
+                    <li>引诱其他蛇进入陷阱</li>
+                    <li>利用地图边界进行攻击</li>
+                </ul>
+                
+                <h4>3. 防御技巧</h4>
+                <p>保护自己同样重要：
+                <ul>
+                    <li>保持蛇身紧凑，减少被攻击的机会</li>
+                    <li>避免进入死角</li>
+                    <li>观察周围玩家的动向</li>
+                    <li>利用加速功能逃脱危险</li>
+                </ul>
+                
+                <div class="tip-box">
+                    <h4><i class="fas fa-lightbulb"></i> 小贴士</h4>
+                    <p>学会"假动作"，假装要攻击某个方向，然后突然改变方向。这可以迷惑其他玩家。</p>
+                </div>
+                
+                <h3>高级技巧</h3>
+                <h4>1. 团队合作</h4>
+                <p>在某些服务器中，可以与其他玩家合作，共同攻击大型蛇。</p>
+                
+                <h4>2. 地图利用</h4>
+                <p>熟悉地图布局，利用边界和障碍物来获得优势。</p>
+                
+                <h4>3. 心理战术</h4>
+                <p>观察其他玩家的行为模式，预测他们的下一步行动。</p>
+                
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> 注意事项</h4>
+                    <p>不要贪心，有时候放弃一个猎物比冒险攻击更明智。记住，生存比得分更重要。</p>
+                </div>
+                
+                <div class="guide-actions">
+                    <a href="index.html#featured" class="btn">立即游戏</a>
+                    <a href="#" class="btn btn-secondary">查看视频攻略</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>GameHub - Play All Games in One Place</p>
+            <div class="copyright">
+                <p>&copy; 2024 GameHub. All rights reserved. | All game content belongs to their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
